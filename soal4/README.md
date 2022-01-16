@@ -1,4 +1,5 @@
-## Logic Test
+## The Question 4
+### Logic Test
 Anagram adalah istilah dimana suatu string jika dibolak balik ordernya maka akan sama eg. 'aku' dan
 'kua' adalah Anagram, 'aku' dan 'aka' bukan Anagram.
 
@@ -7,7 +8,7 @@ Dibawah ini ada array berisi sederetan Strings.
 
 Silahkan kelompokkan/group kata-kata di dalamnya sesuai dengan kelompok Anagramnya,
 
-# Expected Outputs
+### Expected Outputs
 ``` 
 [
     ["kita", "atik", "tika"],
@@ -17,7 +18,13 @@ Silahkan kelompokkan/group kata-kata di dalamnya sesuai dengan kelompok Anagramn
 ]
 ```
 
-### How Run 
+## Answer
+### Solution
+Loop data anagrams (array data), then compare the anagram with the list of anagrams. If the anagram finds another anagram with the same length, validate the letter. whether they were identic or not.
+
+The identic anagram will be grouped and stored in the array.
+
+###  Test the code
 
 You can run application with this command:
 
