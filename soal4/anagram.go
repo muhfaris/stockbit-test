@@ -11,8 +11,7 @@ import (
 )
 
 var rootCmd = &cobra.Command{
-	Use:   "soal4",
-	Short: "Hugo is a very fast static site generator",
+	Use: "soal4",
 	Run: func(cmd *cobra.Command, args []string) {
 		// Do Stuff Here
 		if len(args) > 0 {

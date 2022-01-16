@@ -1,11 +1,35 @@
 package main
 
-import "strings"
+import (
+	"fmt"
+	"os"
+	"strings"
+
+	"github.com/spf13/cobra"
+)
 
 const (
 	openBracket  = "("
 	closeBracket = ")"
 )
+
+var rootCmd = &cobra.Command{
+	Use: "soal3",
+	Run: func(cmd *cobra.Command, args []string) {
+		// Do Stuff Here
+		if len(args) == 1 {
+			str := findFirstStringInBracket(args[0])
+			fmt.Println(str)
+		}
+	},
+}
+
+func Execute() {
+	if err := rootCmd.Execute(); err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+}
 
 func findFirstStringInBracket(str string) string {
 	if len(str) < 0 {
@@ -23,26 +47,6 @@ func findFirstStringInBracket(str string) string {
 	return str
 }
 
-/***
-// Previous Code
-	/*
-		if len(str) > 0 {
-			indexFirstBracketFound := strings.Index(str, "(")
-			if indexFirstBracketFound >= 0 {
-				runes := []rune(str)
-				wordsAfterFirstBracket := string(runes[indexFirstBracketFound:len(str)])
-				indexClosingBracketFound := strings.Index(wordsAfterFirstBracket, ")")
-				if indexClosingBracketFound >= 0 {
-					runes := []rune(wordsAfterFirstBracket)
-					return string(runes[1 : indexClosingBracketFound-1])
-				} else {
-					return ""
-				}
-			} else {
-				return ""
-			}
-		} else {
-			return ""
-		}
-		return ""
-**/
+func main() {
+	Execute()
+}
