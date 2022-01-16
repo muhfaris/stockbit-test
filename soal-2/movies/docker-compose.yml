@@ -1,0 +1,40 @@
+version: '3.3'
+services:
+  db:
+    image: mysql:8.0
+    container_name: movies_db
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'movies_db'
+      # So you don't have to use root, but you can if you like
+      MYSQL_USER: 'userapp'
+      # You can use whatever password you like
+      MYSQL_PASSWORD: 'userapp'
+      # Password for root access
+      MYSQL_ROOT_PASSWORD: 'rootapp'
+    ports:
+      # <Port exposed> : < MySQL Port running inside container>
+      - '3306:3306'
+    expose:
+      # Opens port 3306 on the container
+      - '3306'
+      # Where our data will be persisted
+    volumes:
+      - datadb:/var/lib/mysql
+      - ./files/db/migrations:/docker-entrypoint-initdb.d
+
+  phpmyadmin:
+    depends_on:
+      - db
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    container_name: movies_phpmyadmin 
+    ports:
+      - '8080:80'
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: root 
+
+# Names our volume
+volumes:
+  datadb:

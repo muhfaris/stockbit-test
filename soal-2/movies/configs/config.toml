@@ -1,0 +1,22 @@
+[app]
+  name         = "movie"
+  port         = 8989
+  environment  = "dev"
+
+  [app.http]
+    write_timeout = 10
+    read_timeout  = 10
+    idle_timeout  = 10
+
+[storage]
+  [storage.database]
+    host       = "127.0.0.1"
+    port       = "3306"
+    username   = "userapp"
+    password   = "userapp"
+    name       = "movies_db"
+
+[api]
+  [api.ombdb]
+    api        = "http://www.omdbapi.com"
+    secret_key = "faf7e5bb"
