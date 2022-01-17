@@ -1,5 +1,9 @@
 package domain
 
+import (
+	pb "github.com/muhfaris/stockbit-test/soal-2/movies/grpc/gen/proto"
+)
+
 // MovieResponseModel is response movie
 type MovieResponseModel struct {
 	Title    string `json:"title,omitempty"`
@@ -32,5 +36,94 @@ type MovieResponseModel struct {
 	Response   string `json:"response,omitempty"`
 }
 
+// ToProto is cast response to proto model
+func (movie MovieResponseModel) ToProto() *pb.MovieResponse {
+	var ratings []*pb.Rating
+	for _, rating := range movie.Ratings {
+		r := pb.Rating{
+			Source: rating.Source,
+		}
+
+		ratings = append(ratings, &r)
+	}
+
+	m := pb.MovieResponse{
+		Title:      movie.Title,
+		Year:       movie.Year,
+		Rated:      movie.Rated,
+		Released:   movie.Released,
+		Runtime:    movie.Runtime,
+		Genre:      movie.Genre,
+		Director:   movie.Director,
+		Writer:     movie.Writer,
+		Actors:     movie.Actors,
+		Plot:       movie.Plot,
+		Language:   movie.Language,
+		Country:    movie.Country,
+		Awards:     movie.Awards,
+		Poster:     movie.Poster,
+		Rating:     ratings,
+		Metascore:  movie.Metascore,
+		ImdbRating: movie.ImdbRating,
+		ImdbVotes:  movie.ImdbVotes,
+		ImdbID:     movie.ImdbID,
+		Type:       movie.Type,
+		DVD:        movie.DVD,
+		BoxOffice:  movie.BoxOffice,
+		Production: movie.Production,
+		Website:    movie.Website,
+		Response:   movie.Response,
+	}
+
+	return &m
+}
+
 // MoviesResponseModel is multiple movie response
 type MoviesResponseModel []MovieResponseModel
+
+func (movies MoviesResponseModel) ToProto() []*pb.MovieResponse {
+	var data []*pb.MovieResponse
+	for _, movie := range movies {
+
+		var ratings []*pb.Rating
+		for _, rating := range movie.Ratings {
+			r := pb.Rating{
+				Source: rating.Source,
+			}
+
+			ratings = append(ratings, &r)
+		}
+
+		m := pb.MovieResponse{
+			Title:      movie.Title,
+			Year:       movie.Year,
+			Rated:      movie.Rated,
+			Released:   movie.Released,
+			Runtime:    movie.Runtime,
+			Genre:      movie.Genre,
+			Director:   movie.Director,
+			Writer:     movie.Writer,
+			Actors:     movie.Actors,
+			Plot:       movie.Plot,
+			Language:   movie.Language,
+			Country:    movie.Country,
+			Awards:     movie.Awards,
+			Poster:     movie.Poster,
+			Rating:     ratings,
+			Metascore:  movie.Metascore,
+			ImdbRating: movie.ImdbRating,
+			ImdbVotes:  movie.ImdbVotes,
+			ImdbID:     movie.ImdbID,
+			Type:       movie.Type,
+			DVD:        movie.DVD,
+			BoxOffice:  movie.BoxOffice,
+			Production: movie.Production,
+			Website:    movie.Website,
+			Response:   movie.Response,
+		}
+
+		data = append(data, &m)
+	}
+
+	return data
+}

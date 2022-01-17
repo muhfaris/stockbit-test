@@ -1,0 +1,53 @@
+syntax = "proto3";
+
+package proto;
+
+option go_package = "./proto";
+
+service MovieAPI {
+  rpc SearchMovie(MovieRequest) returns (ResponsesRequest) {}
+  rpc GetDetailMovie(DetailMovieRequest) returns (ResponseRequest) {}
+}
+
+message MovieRequest {
+  string searchword = 1;
+  int32 pagination = 2;
+}
+
+message DetailMovieRequest { string id = 1; }
+
+message Rating {
+  string Source = 1;
+  string Value = 2;
+}
+
+message MovieResponse {
+  string Title = 1;
+  string Year = 2;
+  string Rated = 3;
+  string Released = 4;
+  string Runtime = 5;
+  string Genre = 6;
+  string Director = 7;
+  string Writer = 8;
+  string Actors = 9;
+  string Plot = 10;
+  string Language = 11;
+  string Country = 12;
+  string Awards = 13;
+  string Poster = 14;
+  repeated Rating Rating = 15;
+  string Metascore = 16;
+  string ImdbRating = 17;
+  string ImdbVotes = 18;
+  string ImdbID = 19;
+  string Type = 20;
+  string DVD = 21;
+  string BoxOffice = 22;
+  string Production = 23;
+  string Website = 24;
+  string Response = 25;
+}
+
+message ResponsesRequest { repeated MovieResponse Movies = 1; }
+message ResponseRequest { MovieResponse Data = 1; }
