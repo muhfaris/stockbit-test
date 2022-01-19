@@ -8,6 +8,7 @@ require (
 	github.com/gorilla/handlers v1.5.1
 	github.com/gorilla/mux v1.8.0
 	github.com/gorilla/schema v1.2.0
+	github.com/grpc-ecosystem/go-grpc-middleware v1.3.0
 	github.com/muhfaris/logrus-mysql-hook v1.0.5
 	github.com/muhfaris/request v0.0.5
 	github.com/sirupsen/logrus v1.8.1
