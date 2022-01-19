@@ -2,7 +2,6 @@ package server
 
 import (
 	"context"
-	"log"
 	"net"
 	"time"
 
@@ -26,7 +25,6 @@ type MovieAPIServer struct {
 }
 
 func (s *MovieAPIServer) SearchMovie(ctx context.Context, req *pb.MovieRequest) (*pb.ResponsesRequest, error) {
-	log.Println("Search")
 	searchword := req.GetSearchword()
 	pagination := req.GetPagination()
 
